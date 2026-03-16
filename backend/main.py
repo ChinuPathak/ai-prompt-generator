@@ -1,9 +1,15 @@
 from fastapi import FastAPI
 import google.generativeai as genai
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+api_key = os.getenv("GEMINI_API_KEY")
 
 app = FastAPI()
-genai.configure(api_key="AIzaSyCnr5Bw0yQOgcWYMluK9IA7GWDYXbqehqU")
+genai.configure(api_key=api_key)
 model = genai.GenerativeModel("gemini-2.5-flash")
 
 # Allow frontend to call backend
